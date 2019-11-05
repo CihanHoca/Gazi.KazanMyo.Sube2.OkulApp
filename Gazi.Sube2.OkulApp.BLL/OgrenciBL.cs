@@ -15,7 +15,7 @@ namespace Gazi.Sube2.OkulApp.BLL
         {
             Helper hlp = new Helper();
             SqlParameter[] p = { new SqlParameter("@Ad", ogr.Ad), new SqlParameter("@Soyad", ogr.Soyad), new SqlParameter("@Numara", ogr.Numara),new SqlParameter("@SinifId",1) };
-            return hlp.ExecuteNonQuery("Insert into tblOgrenciler values(@Ad,@Soyad,@Numara,@SinifId)", p) > 0;//Açıklama
+            return hlp.ExecuteNonQuery("Insert into tblOgrenciler values(@Ad,@Soyad,@Numara,@SinifId)", p) > 0;//Açıklama--
         }
     }
 }
