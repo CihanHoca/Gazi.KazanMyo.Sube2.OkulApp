@@ -15,5 +15,8 @@ namespace Gazi.Sube2.OkulApp.MODEL
         public string Numara { get; set; }
         public string Ad { get => ad; set => ad = value.ToUpper(); }
         public string Soyad { get => soyad; set => soyad = value.ToUpper(); }
+
+        public int Sinifid { get; set; }
+
     }
 }

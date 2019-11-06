@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Gazi.Sube2.OkulApp.BLL;
+using Gazi.Sube2.OkulApp.MODEL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -29,80 +31,24 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
 
         private void BtnAra_Click(object sender, EventArgs e)
         {
-            Bul(int.Parse(txtOgrenciNo.Text.Trim()));
-        }
+            OgrenciBL obl = new OgrenciBL();
+            Ogrenci ogr = obl.OgrenciBul(int.Parse(txtOgrenciNo.Text));
 
-        void Bul(int numara)
-        {
-            try
+            if (ogr==null)
             {
-                cn = new SqlConnection(@"Data Source=.;Initial Catalog=TestDb1;Integrated Security=true");
-
-                SqlParameter[] p = { new SqlParameter("@Numara", numara) };
-
-                SqlCommand cmd = new SqlCommand("Select OgrenciId,Ad,Soyad,Numara from tblOgrenciler where Numara=@Numara", cn);
-
-                cmd.Parameters.AddRange(p);
-                OpenConnection();
-                SqlDataReader dr = cmd.ExecuteReader();
-                if (dr.Read())
-                {
-                    //MessageBox.Show($"Ad:{dr["Ad"].ToString()}\nSoyad:{dr["Soyad"]}\nNumara:{dr["Numara"]}\nOgrenciId:{dr["OgrenciId"]}");
-                    Form1 frm = (Form1)Application.OpenForms["Form1"];
-
-                    frm.txtAd.Text = dr["Ad"].ToString();
-                    frm.txtSoyad.Text = dr["Soyad"].ToString();
-                    frm.txtNumara.Text = dr["Numara"].ToString();
-                }
-                else
-                {
-                    MessageBox.Show("Öğrenci  bulunamadı!");
-                }
-                dr.Close();
+                MessageBox.Show("Öğrenci Bulunamadı!");
             }
-            catch (Exception)
+            else
             {
-                throw;
-            }
-            finally
-            {
-                CloseConnection();
+                form1.txtAd.Text = ogr.Ad;
+                form1.txtSoyad.Text = ogr.Soyad;
+                form1.txtNumara.Text = ogr.Numara;
             }
         }
 
 
-        void OpenConnection()
-        {
 
 
-            try
-            {
-                if (cn != null && cn.State != ConnectionState.Open)
-                {
-                    cn.Open();
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-
-        void CloseConnection()
-        {
-            try
-            {
-                if (cn != null && cn.State != ConnectionState.Closed)
-                {
-                    cn.Close();
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
 
 
 

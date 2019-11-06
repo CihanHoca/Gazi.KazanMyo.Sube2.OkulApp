@@ -9,22 +9,32 @@ using System.Threading.Tasks;
 
 namespace Gazi.KazanMyo.DAL
 {//DAL->Data Access Layer
-    public class Helper
+    public class Helper : IDisposable
     {
-        SqlConnection cn = null;
+        SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cstr"].ConnectionString);
+        SqlCommand cmd = null;
 
         public int ExecuteNonQuery(string cmdtext, SqlParameter[] p)
         {
-            cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cstr"].ConnectionString);
-            SqlCommand cmd = new SqlCommand(cmdtext, cn);
+            cmd = new SqlCommand(cmdtext, cn);
             if (p != null)
             {
                 cmd.Parameters.AddRange(p);
             }
             OpenConnection();
-            int sonuc = cmd.ExecuteNonQuery();
-            CloseConnection();
+            int sonuc = cmd.ExecuteNonQuery();                   
             return sonuc;
+        }
+
+        public SqlDataReader ExecuteReader(string cmdtext, SqlParameter[] p)
+        {
+            cmd = new SqlCommand(cmdtext, cn);
+            if (p != null)
+            {
+                cmd.Parameters.AddRange(p);
+            }
+            OpenConnection();
+            return cmd.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
         void OpenConnection()
@@ -55,6 +65,15 @@ namespace Gazi.KazanMyo.DAL
             {
 
                 throw;
+            }
+        }
+
+        public void Dispose()
+        {
+            if (cn != null && cmd != null)
+            {
+                cn.Dispose();
+                cmd.Dispose();
             }
         }
     }
