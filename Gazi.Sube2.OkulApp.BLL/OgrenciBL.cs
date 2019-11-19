@@ -20,10 +20,18 @@ namespace Gazi.Sube2.OkulApp.BLL
             return sonuc > 0;
         }
 
+        public bool OgrenciGuncelle(Ogrenci ogr)
+        {
+            SqlParameter[] p = { new SqlParameter("@Ad", ogr.Ad), new SqlParameter("@Soyad", ogr.Soyad), new SqlParameter("@Numara", ogr.Numara), new SqlParameter("@SinifId", 1),new SqlParameter("@Ogrenciid",ogr.Ogrenciid) };
+
+            int sonuc = hlp.ExecuteNonQuery("Update tblOgrenciler set Ad=@Ad,Soyad=@Soyad,Numara=@Numara,SinifId=@SinifId where OgrenciId=@OgrenciId", p);
+            return sonuc > 0;
+        }
+
         public Ogrenci OgrenciBul(int numara)
         {
             SqlParameter[] p = { new SqlParameter("@Numara", numara) };
-            SqlDataReader dr = hlp.ExecuteReader("Select Ad,Soyad,Numara,SinifId from tblOgrenciler Where Numara=@Numara", p);
+            SqlDataReader dr = hlp.ExecuteReader("Select Ad,Soyad,Numara,SinifId,OgrenciId from tblOgrenciler Where Numara=@Numara", p);
             Ogrenci o = null;
             if (dr.Read())
             {
@@ -32,6 +40,7 @@ namespace Gazi.Sube2.OkulApp.BLL
                 o.Soyad = dr["Soyad"].ToString();
                 o.Numara = dr["Numara"].ToString();
                 o.Sinifid = Convert.ToInt32(dr["SinifId"]);
+                o.Ogrenciid = Convert.ToInt32(dr["OgrenciId"]);
             }
             dr.Close();
            

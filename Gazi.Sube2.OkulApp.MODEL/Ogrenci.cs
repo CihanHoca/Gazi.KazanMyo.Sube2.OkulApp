@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 namespace Gazi.Sube2.OkulApp.MODEL
 {
     public class Ogrenci
-    {//ercan--
-        public string Ogrenciid { get; set; }
+    {
+        public int Ogrenciid { get; set; }
 
         string ad;
         string soyad;

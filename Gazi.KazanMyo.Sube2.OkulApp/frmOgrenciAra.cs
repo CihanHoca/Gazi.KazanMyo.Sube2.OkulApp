@@ -43,6 +43,7 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
                 form1.txtAd.Text = ogr.Ad;
                 form1.txtSoyad.Text = ogr.Soyad;
                 form1.txtNumara.Text = ogr.Numara;
+                form1.ogrenciid = ogr.Ogrenciid;
             }
         }
 
