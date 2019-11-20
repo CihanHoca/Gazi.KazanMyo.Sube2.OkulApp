@@ -15,7 +15,7 @@ namespace Gazi.Sube2.OkulApp.BLL
         Helper hlp = new Helper();
         public bool OgrenciEkle(Ogrenci ogr)
         {
-            SqlParameter[] p = { new SqlParameter("@Ad", ogr.Ad), new SqlParameter("@Soyad", ogr.Soyad), new SqlParameter("@Numara", ogr.Numara), new SqlParameter("@SinifId", 1) };
+            SqlParameter[] p = { new SqlParameter("@Ad", ogr.Ad), new SqlParameter("@Soyad", ogr.Soyad), new SqlParameter("@Numara", ogr.Numara), new SqlParameter("@SinifId", ogr.Sinifid) };
             int sonuc = hlp.ExecuteNonQuery("Insert into tblOgrenciler values(@Ad,@Soyad,@Numara,@SinifId)", p);  
             return sonuc > 0;
         }

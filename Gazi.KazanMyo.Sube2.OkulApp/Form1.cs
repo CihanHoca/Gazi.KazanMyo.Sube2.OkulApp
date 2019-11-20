@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,12 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
         //Sql Injection
         private void BtnKaydet_Click(object sender, EventArgs e)
         {
+            if (cmbSiniflar.SelectedIndex == 0)
+            {
+                MessageBox.Show("Sınıf Seçiniz!");
+                return;
+            }
+
             OgrenciBL obl = new OgrenciBL();
             try
             {
@@ -33,10 +40,14 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
                 ogrenci.Soyad = txtSoyad.Text.Trim();
                 ogrenci.Numara = txtNumara.Text.Trim();
                 ogrenci.Ogrenciid = ogrenciid;
+                ogrenci.Sinifid = (int)cmbSiniflar.SelectedValue;
 
                 if (ogrenciid == 0)
                 {
-                    MessageBox.Show(obl.OgrenciEkle(ogrenci) ? "Başarılı" : "Başarısız");
+                    if (obl.OgrenciEkle(ogrenci))
+                    {
+                        MessageBox.Show("Ekleme Başarılı");
+                    }
                 }
                 else
                 {
@@ -63,6 +74,7 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
             }
             finally
             {
+                Temizle();
                 obl.Dispose();
             }
         }
@@ -71,6 +83,24 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
         {
             frmOgrenciAra frm = new frmOgrenciAra(this);
             frm.Show();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            SinifBL sb = new SinifBL();
+            cmbSiniflar.DisplayMember = "Sinifad";
+            cmbSiniflar.ValueMember = "Sinifid";
+            cmbSiniflar.DataSource = sb.SinifListesi();
+            sb.Dispose();
+        }
+
+        void Temizle()
+        {
+            foreach (Control item in this.Controls["pnlTextbox"].Controls)
+            {
+                item.Text = string.Empty;
+            }
+            cmbSiniflar.SelectedIndex = 0;
         }
     }
 }
