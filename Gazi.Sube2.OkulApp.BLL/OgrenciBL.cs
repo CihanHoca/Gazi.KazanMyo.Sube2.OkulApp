@@ -47,6 +47,12 @@ namespace Gazi.Sube2.OkulApp.BLL
             return o;
         }
 
+        public bool OgrenciSil(int ogrenciid)
+        {
+            SqlParameter[] p = {new SqlParameter("@OgrenciId",ogrenciid) };
+           return hlp.ExecuteNonQuery("Delete from tblOgrenciler where Ogrenciid=@OgrenciId", p)>0;
+        }
+
         public void Dispose()
         {
             hlp.Dispose();

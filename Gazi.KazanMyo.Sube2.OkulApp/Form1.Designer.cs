@@ -39,6 +39,8 @@
             this.cmbSiniflar = new System.Windows.Forms.ComboBox();
             this.lblSinif = new System.Windows.Forms.Label();
             this.pnlTextBox = new System.Windows.Forms.Panel();
+            this.btnVazgec = new System.Windows.Forms.Button();
+            this.btnSil = new System.Windows.Forms.Button();
             this.pnlTextBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,6 +50,7 @@
             this.txtAd.Name = "txtAd";
             this.txtAd.Size = new System.Drawing.Size(100, 20);
             this.txtAd.TabIndex = 0;
+            this.txtAd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAd_KeyPress);
             // 
             // txtSoyad
             // 
@@ -96,7 +99,7 @@
             this.btnKaydet.Name = "btnKaydet";
             this.btnKaydet.Size = new System.Drawing.Size(100, 23);
             this.btnKaydet.TabIndex = 6;
-            this.btnKaydet.Text = "Kaydet";
+            this.btnKaydet.Text = "Ekle";
             this.btnKaydet.UseVisualStyleBackColor = true;
             this.btnKaydet.Click += new System.EventHandler(this.BtnKaydet_Click);
             // 
@@ -137,11 +140,38 @@
             this.pnlTextBox.Size = new System.Drawing.Size(138, 122);
             this.pnlTextBox.TabIndex = 10;
             // 
+            // btnVazgec
+            // 
+            this.btnVazgec.Location = new System.Drawing.Point(91, 283);
+            this.btnVazgec.Name = "btnVazgec";
+            this.btnVazgec.Size = new System.Drawing.Size(100, 23);
+            this.btnVazgec.TabIndex = 11;
+            this.btnVazgec.Text = "Vazgeç";
+            this.btnVazgec.UseVisualStyleBackColor = true;
+            this.btnVazgec.Visible = false;
+            this.btnVazgec.Click += new System.EventHandler(this.BtnVazgec_Click);
+            // 
+            // btnSil
+            // 
+            this.btnSil.BackColor = System.Drawing.Color.Red;
+            this.btnSil.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnSil.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnSil.Location = new System.Drawing.Point(91, 326);
+            this.btnSil.Name = "btnSil";
+            this.btnSil.Size = new System.Drawing.Size(100, 44);
+            this.btnSil.TabIndex = 12;
+            this.btnSil.Text = "Sil";
+            this.btnSil.UseVisualStyleBackColor = false;
+            this.btnSil.Visible = false;
+            this.btnSil.Click += new System.EventHandler(this.BtnSil_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(242, 291);
+            this.ClientSize = new System.Drawing.Size(242, 403);
+            this.Controls.Add(this.btnSil);
+            this.Controls.Add(this.btnVazgec);
             this.Controls.Add(this.pnlTextBox);
             this.Controls.Add(this.lblSinif);
             this.Controls.Add(this.cmbSiniflar);
@@ -166,13 +196,15 @@
         private System.Windows.Forms.Label lblAd;
         private System.Windows.Forms.Label lblSoyad;
         private System.Windows.Forms.Label lblNumara;
-        private System.Windows.Forms.Button btnKaydet;
         private System.Windows.Forms.Button btnAra;
         public System.Windows.Forms.TextBox txtSoyad;
         public System.Windows.Forms.TextBox txtNumara;
-        private System.Windows.Forms.ComboBox cmbSiniflar;
         private System.Windows.Forms.Label lblSinif;
         private System.Windows.Forms.Panel pnlTextBox;
+        public System.Windows.Forms.ComboBox cmbSiniflar;
+        public System.Windows.Forms.Button btnVazgec;
+        public System.Windows.Forms.Button btnKaydet;
+        public System.Windows.Forms.Button btnSil;
     }
 }
 

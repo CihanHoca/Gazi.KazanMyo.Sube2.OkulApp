@@ -21,7 +21,6 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
         public Form1()
         {
             InitializeComponent();
-
         }
         //Sql Injection
         private void BtnKaydet_Click(object sender, EventArgs e)
@@ -101,6 +100,57 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
                 item.Text = string.Empty;
             }
             cmbSiniflar.SelectedIndex = 0;
+            ogrenciid = 0;
+            btnVazgec.Visible = false;
+            btnKaydet.Text = "Ekle";
+            btnSil.Visible = false;
+        }
+
+        private void BtnVazgec_Click(object sender, EventArgs e)
+        {
+            Temizle();
+        }
+
+        private void BtnSil_Click(object sender, EventArgs e)
+        {
+            DialogResult cvp = MessageBox.Show("Emin misiniz?", "Silme Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (cvp==DialogResult.No) return;
+
+            OgrenciBL obl = new OgrenciBL();
+            try
+            {
+                if (obl.OgrenciSil(ogrenciid))
+                {
+                    MessageBox.Show("Silme Başarılı'");
+                }
+                else
+                {
+                    MessageBox.Show("Silme Hatalı!!");
+                }
+                Temizle();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                obl.Dispose();
+            }
+        }
+
+        private void TxtAd_TextChanged(object sender, EventArgs e)
+        {
+            MessageBox.Show("Test");
+        }
+
+        private void TxtAd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar=='1')
+            {
+                e.Handled = true;
+            }
         }
     }
 }
