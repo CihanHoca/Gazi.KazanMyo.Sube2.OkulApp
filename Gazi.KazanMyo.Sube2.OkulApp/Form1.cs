@@ -115,7 +115,7 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
         {
             DialogResult cvp = MessageBox.Show("Emin misiniz?", "Silme Onayı", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (cvp==DialogResult.No) return;
+            if (cvp == DialogResult.No) return;
 
             OgrenciBL obl = new OgrenciBL();
             try
@@ -145,12 +145,38 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
             MessageBox.Show("Test");
         }
 
-        private void TxtAd_KeyPress(object sender, KeyPressEventArgs e)
+        int[] turkce = {252,287,351,231,246,305,304,220,286,350,199,214 };
+
+        int[] ozelkarakter = { 8, 32 };
+
+        private void Txt_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar=='1')
+            //if (!((e.KeyChar >= 65 && e.KeyChar <= 90) || (e.KeyChar >= 97 && e.KeyChar <= 122) || turkce.Contains(e.KeyChar)||ozelkarakter.Contains(e.KeyChar)))
+            //{
+            //    e.Handled = true;
+            //}
+            e.Handled = KarakterKontrol(e.KeyChar);
+        }
+        bool KarakterKontrol(char c)
+        {
+            if (!((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || turkce.Contains(c) || ozelkarakter.Contains(c)))
             {
-                e.Handled = true;
+                return true;
             }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            string ascii = string.Empty;
+            for (int i = 0; i < txtSoyad.Text.Length; i++)
+            {
+                ascii += txtSoyad.Text[i].ToString()+"-"+((int)txtSoyad.Text[i]).ToString()+"\n";
+            }
+            MessageBox.Show(ascii);
         }
     }
 }

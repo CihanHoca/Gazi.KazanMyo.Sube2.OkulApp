@@ -41,6 +41,8 @@
             this.pnlTextBox = new System.Windows.Forms.Panel();
             this.btnVazgec = new System.Windows.Forms.Button();
             this.btnSil = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.myTextBox1 = new Gazi.KazanMyo.Sube2.CustomControls.MyTextBox();
             this.pnlTextBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,7 +52,7 @@
             this.txtAd.Name = "txtAd";
             this.txtAd.Size = new System.Drawing.Size(100, 20);
             this.txtAd.TabIndex = 0;
-            this.txtAd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtAd_KeyPress);
+            this.txtAd.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_KeyPress);
             // 
             // txtSoyad
             // 
@@ -58,6 +60,7 @@
             this.txtSoyad.Name = "txtSoyad";
             this.txtSoyad.Size = new System.Drawing.Size(100, 20);
             this.txtSoyad.TabIndex = 1;
+            this.txtSoyad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_KeyPress);
             // 
             // txtNumara
             // 
@@ -165,11 +168,31 @@
             this.btnSil.Visible = false;
             this.btnSil.Click += new System.EventHandler(this.BtnSil_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(5, 229);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(59, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
+            // myTextBox1
+            // 
+            this.myTextBox1.CalismaModu = Gazi.KazanMyo.Sube2.CustomControls.WorkMode.Rakam;
+            this.myTextBox1.Location = new System.Drawing.Point(70, 2);
+            this.myTextBox1.Name = "myTextBox1";
+            this.myTextBox1.Size = new System.Drawing.Size(100, 20);
+            this.myTextBox1.TabIndex = 14;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(242, 403);
+            this.Controls.Add(this.myTextBox1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSil);
             this.Controls.Add(this.btnVazgec);
             this.Controls.Add(this.pnlTextBox);
@@ -205,6 +228,8 @@
         public System.Windows.Forms.Button btnVazgec;
         public System.Windows.Forms.Button btnKaydet;
         public System.Windows.Forms.Button btnSil;
+        private System.Windows.Forms.Button button1;
+        private CustomControls.MyTextBox myTextBox1;
     }
 }
 

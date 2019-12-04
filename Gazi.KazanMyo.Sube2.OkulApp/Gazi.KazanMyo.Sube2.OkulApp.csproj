@@ -89,6 +89,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Gazi.KazanMyo.Sube2.CustomControls\Gazi.KazanMyo.Sube2.CustomControls.csproj">
+      <Project>{78093509-98dc-4b80-8f77-ced18a404fa7}</Project>
+      <Name>Gazi.KazanMyo.Sube2.CustomControls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Gazi.Sube2.OkulApp.BLL\Gazi.Sube2.OkulApp.BLL.csproj">
       <Project>{EC25618B-0046-4BF1-8604-B4777C4F853B}</Project>
       <Name>Gazi.Sube2.OkulApp.BLL</Name>
