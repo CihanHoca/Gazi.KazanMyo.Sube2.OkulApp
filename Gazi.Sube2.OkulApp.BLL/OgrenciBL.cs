@@ -2,6 +2,7 @@
 using Gazi.Sube2.OkulApp.MODEL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
@@ -52,6 +53,8 @@ namespace Gazi.Sube2.OkulApp.BLL
             SqlParameter[] p = {new SqlParameter("@OgrenciId",ogrenciid) };
            return hlp.ExecuteNonQuery("Delete from tblOgrenciler where Ogrenciid=@OgrenciId", p)>0;
         }
+
+        public DataTable OgrenciTablosu() => hlp.MyDataTable("Select * from tblOgrenciler"); 
 
         public void Dispose()
         {

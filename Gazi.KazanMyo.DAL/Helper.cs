@@ -37,6 +37,13 @@ namespace Gazi.KazanMyo.DAL
             return cmd.ExecuteReader(CommandBehavior.CloseConnection);
         }
 
+        public DataTable MyDataTable(string cmdtext)
+        {
+            SqlDataAdapter da = new SqlDataAdapter(cmdtext, cn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
         void OpenConnection()
         {
             try
