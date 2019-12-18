@@ -23,7 +23,7 @@ namespace Gazi.Sube2.OkulApp.BLL
 
         public bool OgrenciGuncelle(Ogrenci ogr)
         {
-            SqlParameter[] p = { new SqlParameter("@Ad", ogr.Ad), new SqlParameter("@Soyad", ogr.Soyad), new SqlParameter("@Numara", ogr.Numara), new SqlParameter("@SinifId", 1),new SqlParameter("@Ogrenciid",ogr.Ogrenciid) };
+            SqlParameter[] p = { new SqlParameter("@Ad", ogr.Ad), new SqlParameter("@Soyad", ogr.Soyad), new SqlParameter("@Numara", ogr.Numara), new SqlParameter("@SinifId", 1),new SqlParameter("@OgrenciId",ogr.Ogrenciid) };
 
             int sonuc = hlp.ExecuteNonQuery("Update tblOgrenciler set Ad=@Ad,Soyad=@Soyad,Numara=@Numara,SinifId=@SinifId where OgrenciId=@OgrenciId", p);
             return sonuc > 0;
@@ -54,7 +54,7 @@ namespace Gazi.Sube2.OkulApp.BLL
            return hlp.ExecuteNonQuery("Delete from tblOgrenciler where Ogrenciid=@OgrenciId", p)>0;
         }
 
-        public DataTable OgrenciTablosu() => hlp.MyDataTable("Select * from tblOgrenciler"); 
+        public DataTable OgrenciTablosu() => hlp.MyDataTable("Select o.OgrenciId,o.Ad,o.Soyad,o.Numara,s.SinifAd,o.SinifId from tblOgrenciler o Inner Join tblSiniflar s On o.SinifId=s.SinifId"); 
 
         public void Dispose()
         {

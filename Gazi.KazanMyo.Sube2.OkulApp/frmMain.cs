@@ -23,5 +23,12 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void MenuOgrenciListe_Click(object sender, EventArgs e)
+        {
+            frmOgrenciListe frm = new frmOgrenciListe();
+            frm.Show();
+         
+        }
     }
 }

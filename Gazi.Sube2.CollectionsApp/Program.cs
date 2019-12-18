@@ -15,7 +15,7 @@ namespace Gazi.Sube2.CollectionsApp
             Console.ForegroundColor = ConsoleColor.Black;
             Console.Clear();
 
-
+            #region Collections
             //ArrayList al = new ArrayList();
             //al.Add("2");
             //al.Add(5);
@@ -88,21 +88,73 @@ namespace Gazi.Sube2.CollectionsApp
             //d.sayi1 = 5;
             //d.sayi2 = "6";
 
-            List<int> lst = new List<int>();
-            lst.Add(5);
-            lst.Add(10);
+            //List<int> lst = new List<int>();
+            //lst.Add(5);
+            //lst.Add(10);
 
-            foreach (var item in lst)
+            //foreach (var item in lst)
+            //{
+            //    Console.WriteLine(item);
+            //} 
+            #endregion
+
+            //using (OkulContext ctx=new OkulContext())
+            //{
+            //    ctx.tblSiniflars.Add(new tblSiniflar { SinifAd = "8-A", Kontenjan = 25 });
+            //    ctx.SaveChanges();
+            //}
+
+            //using (OkulContext ctx = new OkulContext())
+            //{
+            //    tblSiniflar s = ctx.tblSiniflars.Find(8);
+            //    s.Kontenjan = 30;
+            //    ctx.SaveChanges();
+            //}
+
+            //using (OkulContext ctx = new OkulContext())
+            //{  
+            //    ctx.tblSiniflars.Remove(ctx.tblSiniflars.Find(8));
+            //    ctx.SaveChanges();
+            //}
+
+            //using (OkulContext ctx=new OkulContext())
+            //{
+            //    List<tblSiniflar> lst = ctx.tblSiniflars.ToList();
+
+            //    foreach (tblSiniflar sinif in lst)
+            //    {
+            //        Console.WriteLine($"Sınıf Adı:{sinif.SinifAd} Kontenjan:{sinif.Kontenjan}");
+            //    }
+            //}
+
+            //using (OkulContext ctx=new OkulContext())
+            //{//Eager Loading
+            //    List<tblOgrenciler> lst = ctx.tblOgrencilers.Include("tblSiniflars").ToList();
+            //    foreach (tblOgrenciler ogr in lst)
+            //    {
+            //        Console.WriteLine($"Öğrenci Adı:{ogr.Ad}\nSoyadı:{ogr.Soyad}\nSınıfı:{ogr.tblSiniflar.SinifAd}\n-----------------------");
+            //    }
+            //}
+
+            using (OkulContext ctx=new OkulContext())
             {
-                Console.WriteLine(item);
+                foreach (var sinif in ctx.tblSiniflars.Include("tblOgrencilers"))
+                {
+                    Console.WriteLine($"Sınıf Adı:{sinif.SinifAd}");
+                    foreach (var ogrenci in sinif.tblOgrencilers)
+                    {
+                        Console.WriteLine($"\tOgrenci Adı:{ogrenci.Ad}");
+                    }
+                }
             }
+
 
             Console.ReadKey();
         }
     }
 
     //Generic Constraint-Kısıtlayıcı
-    class Deneme<T,M> where T:struct where M:struct
+    class Deneme<T, M> where T : struct where M : struct
     {
         public T sayi1;
         public M sayi2;

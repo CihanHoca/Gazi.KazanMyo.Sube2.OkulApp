@@ -34,6 +34,7 @@
             this.menuOgrenciListe = new System.Windows.Forms.ToolStripMenuItem();
             this.öğretmenİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.çıkışToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.denemeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +61,8 @@
             // 
             // menuOgrenciKayit
             // 
+            this.menuOgrenciKayit.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.denemeToolStripMenuItem});
             this.menuOgrenciKayit.Name = "menuOgrenciKayit";
             this.menuOgrenciKayit.Size = new System.Drawing.Size(180, 22);
             this.menuOgrenciKayit.Text = "Öğrenci Kayıt";
@@ -70,6 +73,7 @@
             this.menuOgrenciListe.Name = "menuOgrenciListe";
             this.menuOgrenciListe.Size = new System.Drawing.Size(180, 22);
             this.menuOgrenciListe.Text = "Öğrenci Listeleme";
+            this.menuOgrenciListe.Click += new System.EventHandler(this.MenuOgrenciListe_Click);
             // 
             // öğretmenİşlemleriToolStripMenuItem
             // 
@@ -82,6 +86,12 @@
             this.çıkışToolStripMenuItem.Name = "çıkışToolStripMenuItem";
             this.çıkışToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.çıkışToolStripMenuItem.Text = "Çıkış";
+            // 
+            // denemeToolStripMenuItem
+            // 
+            this.denemeToolStripMenuItem.Name = "denemeToolStripMenuItem";
+            this.denemeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.denemeToolStripMenuItem.Text = "deneme";
             // 
             // frmMain
             // 
@@ -108,5 +118,6 @@
         private System.Windows.Forms.ToolStripMenuItem menuOgrenciListe;
         private System.Windows.Forms.ToolStripMenuItem öğretmenİşlemleriToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem çıkışToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem denemeToolStripMenuItem;
     }
 }

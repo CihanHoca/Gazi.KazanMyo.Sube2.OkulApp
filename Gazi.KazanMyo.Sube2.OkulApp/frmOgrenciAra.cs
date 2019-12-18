@@ -51,11 +51,12 @@ namespace Gazi.KazanMyo.Sube2.OkulApp
             }
         }
 
-
-
-
-
-
-
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            foreach (var item in listBox1.Items)
+            {
+                MessageBox.Show(item.ToString());
+            }
+        }
     }
 }
